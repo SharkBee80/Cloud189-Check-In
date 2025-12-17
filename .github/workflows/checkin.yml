@@ -1,0 +1,32 @@
+name: Cloud189 Checkin
+
+on:
+  schedule:
+    - cron: '10 3 * * *'  # 每天 UTC 3:10 执行（北京时间早上 11:10）
+  workflow_dispatch:  # 支持手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install requests rsa
+
+      - name: Run script
+        env:
+          ACCOUNT: ${{ secrets.USERNAME }}
+          TG: ${{ secrets.TG }}
+          UA: ${{ secrets.UA }}
+          MODEL: ${{ secrets.MODEL }}
+        run: |
+          python checkin.py
