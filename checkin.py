@@ -34,14 +34,15 @@ class TG:
         for i in range(self.retry + 1):
             try:
                 resp = requests.post(url, data=data, files=files, timeout=self.timeout)
-                return resp.json()
+                # return resp.json()
+                return {"ok": True, "result": resp.json()}
             except Exception as e:
                 if i == self.retry:
                     print(f"Telegram API 请求失败,{e}")
                     return {"ok": False, "error": str(e)}
                 print(f"{e}\nTelegram API 请求失败，正在第 {i + 1} 次重试...")
                 time.sleep(1)
-        return None
+        return {"ok": False}
 
     # 发文字
     def send_text(self, text, parse_mode=None):
@@ -192,7 +193,7 @@ class Ecloud:
         except Exception as e:
             print("登录重试结束仍失败：", e)
             push = '❌ 错误，请查看运行日志！'
-            return push
+            return push, False
 
         base_headers = {
             'User-Agent': UA or "Mozilla 5.0",
@@ -217,7 +218,7 @@ class Ecloud:
         except Exception as e:
             print("签到失败：", e)
             push = '❌ 错误，请查看运行日志！'
-            return push
+            return push, False
 
         # tasks = [
         #     ("TASK_SIGNIN", "ACT_SIGNIN", ""),
@@ -238,9 +239,9 @@ class Ecloud:
         #     except Exception as e:
         #         print(f"{label}抽奖失败：", e)
 
-        print("天翼云盘签到结果：")
+        # print("天翼云盘签到结果：")
         push = "\n".join(results)
-        return push
+        return push, True
 
 
 def pusher(msg):
@@ -255,7 +256,11 @@ def pusher(msg):
                f"\n"
                f"📅 *时间*：{now_beijing}\n")
 
-        tg_bot.send_markdown(msg)
+        result = tg_bot.send_markdown(msg)
+        result["platform"] = "TG"
+        return result
+    else:
+        return None
 
 
 def adduser(msg, uname, i):
@@ -281,14 +286,17 @@ def main():
     print("✅ 检测到共：", len(accounts), "个天翼云盘账号\n")
     # main
     i = 0
+    status = []
     while i < len(accounts):
         username, password = accounts[i].replace(" ", "").split(";")
         try:
             assert username and password, "请检查账号密码是否填写正确"
         except AssertionError:
             push = '❌ 错误，请检查账号密码是否填写正确！'
+            success = False
         else:
-            push = Ecloud(username, password).single_checkin()
+            push, success = Ecloud(username, password).single_checkin()
+        status.append(success)
         push = adduser(push, username, i + 1)
         msg += push + ("" if i + 1 == len(accounts) else "\n\n")
         i += 1
@@ -296,6 +304,10 @@ def main():
             time.sleep(random.uniform(2, 5))
     # print("\n推送预览：\n", msg)
     pusher(msg)
+    # 抛出错误签到状态
+    for s in status:
+        if not s:
+            raise Exception("❌ 错误")
 
 
 if __name__ == "__main__":
