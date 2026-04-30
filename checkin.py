@@ -15,7 +15,6 @@ try:
 except ImportError:
     pass
 
-
 class TG:
     def __init__(self, token, chat_id, retry=2, timeout=5):
         # 检测是否为空
@@ -288,7 +287,7 @@ def main():
     i = 0
     status = []
     while i < len(accounts):
-        username, password = accounts[i].replace(" ", "").split(";")
+        username, password = accounts[i].replace(" ", "").replace("；", ";").split(";")
         try:
             assert username and password, "请检查账号密码是否填写正确"
         except AssertionError:
