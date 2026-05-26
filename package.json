@@ -1,0 +1,30 @@
+{
+  "name": "cloud189-check-in",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "node src/index.ts",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "SharkBee80",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.16.1",
+    "axios-cookiejar-support": "^7.0.0",
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.4.2",
+    "tough-cookie": "^6.0.1"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^1.0.0",
+    "@types/node": "^25.9.1",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
+  }
+}

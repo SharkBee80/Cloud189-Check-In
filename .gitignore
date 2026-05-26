@@ -1,0 +1,9 @@
+/.idea/
+.env
+env.py
+__pycache__/
+debug/
+
+
+# node
+node_modules/
