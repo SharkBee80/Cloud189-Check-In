@@ -1,3 +1,6 @@
+> [!warning]
+> 2026-05-26 失效
+
 > **Forked from**
 > [`qqhsx`](https://github.com/qqhsx/)
 > /
