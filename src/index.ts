@@ -71,7 +71,7 @@ async function main(ACCOUNTS: string): Promise<{ len: number; msg: string[]; err
 }
 
 function generateMsg(msg: string[], len: number): string {
-  const now = new Date().toLocaleString("zh-CN", { hour12: false });
+  const now = new Date().toLocaleString("zh-CN", { hour12: false, timeZone: "Asia/Shanghai" });
   const t = (() => `
 #ecloud *天翼云盘自动签到*\n
 ${msg.join("\n")}\n

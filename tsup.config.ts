@@ -6,13 +6,13 @@ export default defineConfig((options) => ({
   dts: false,
   clean: true,
   sourcemap: false,
-  minify: true,
+  minify: false,
   minifyIdentifiers: true,
-  minifyWhitespace: true,
+  minifyWhitespace: false,
   minifySyntax: true,
   splitting: false,
   shims: true,
-  // pure: ["console.log"],
+  // pure: ["console.debug"],
   esbuildOptions: (options) => {
     options.charset = "utf8";
   },

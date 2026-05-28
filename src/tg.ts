@@ -23,7 +23,7 @@ export class TG_Bot {
     for (let i = 0; i < this.max_try; i++) {
       try {
         const response = await http.post("", data);
-        console.log(response.data);
+        // console.log(response.data);
         return { ok: true, result: response.data };
       } catch (error) {
         if (i === this.max_try) {
