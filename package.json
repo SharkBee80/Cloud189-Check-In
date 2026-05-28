@@ -7,7 +7,6 @@
   "scripts": {
     "start": "node src/index.ts",
     "start:js": "node dist/index.js",
-    "start:global": "node dist/index.global.js",
     "build": "tsup",
     "build:watch": "tsup --watch",
     "test": "echo \"Error: no test specified\" && exit 1"

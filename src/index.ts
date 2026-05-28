@@ -16,10 +16,11 @@ async function sign(acc: string[], index: number): Promise<[string, boolean]> {
       index: index + 1,
       isSign: r1.isSign,
       bonus: r1.netdiskBonus,
-      id: ((r2 as any).account as string).split("@")[0],
+      id: ((r2 as any).account as string).split("@")[0]?.replace(/\*/g, "\\*"),
       total: r2.cloudCapacityInfo.totalSize,
     };
-    res = `🙍🏻‍♂️ 第${data.index}个账号 ${data.id}\n` + `${data.isSign ? "☑️" : "✅"} 已签到，获得 ${data.bonus}M 空间\n` + `总共 ${generateTotal(data.total)}\n`;
+    res =
+      `🙍🏻‍♂️ 第${data.index}个账号 ${data.id}\n` + `${data.isSign ? "✅" : "☑️"} 已签到，获得 ${data.bonus}M 空间\n` + `🍺 总共 ${generateTotal(data.total)} 容量`;
   } catch (e) {
     res = `❌ 第${index + 1}个账号 出错\n` + `⁉️ ${e}`;
     err = true;

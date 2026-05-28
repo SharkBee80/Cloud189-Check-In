@@ -12,6 +12,10 @@
 **签到失败，尝试 [天翼账号中心](https://e.dlife.cn/portal/web/index.html#/) 关闭设备锁**
 ![img.png](img.png)
 
+# description
+
+1. `☑️`|`✅`的区别：`签到成功`|`已签到`
+
 # contribute
 
 > ~~**Forked from**
