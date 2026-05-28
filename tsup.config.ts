@@ -2,7 +2,7 @@ import { defineConfig } from "tsup";
 
 export default defineConfig((options) => ({
   entry: ["src/index.ts"],
-  format: ["esm"],
+  format: ["esm", "iife"],
   dts: false,
   clean: true,
   sourcemap: false,
@@ -12,6 +12,7 @@ export default defineConfig((options) => ({
   minifySyntax: true,
   splitting: false,
   shims: true,
+  // pure: ["console.log"],
   esbuildOptions: (options) => {
     options.charset = "utf8";
   },

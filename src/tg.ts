@@ -14,7 +14,7 @@ export class TG_Bot {
     this.base_url = `https://api.telegram.org/bot${this.token}/`;
   }
 
-  private async post(method: string, data?: any): Promise<{}> {
+  private async post(method: string, data?: any): Promise<{ ok: Boolean; result?: any; error?: any }> {
     const url = this.base_url + method;
     const http = axios.create({
       baseURL: url,

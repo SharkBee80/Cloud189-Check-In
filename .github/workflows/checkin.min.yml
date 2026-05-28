@@ -1,4 +1,4 @@
-name: Cloud189 Checkin nodejs
+name: Cloud189 Checkin nodejs min
 
 on:
   schedule:
@@ -18,10 +18,10 @@ jobs:
         with:
           node-version: "24" # 推荐使用稳定的 LTS 版本
 
-      - name: 安装依赖
-        run: |
-          npm i -g pnpm
-          pnpm i
+      # - name: 安装依赖
+      #   run: |
+      #     npm i -g pnpm
+      #     pnpm i
 
       - name: 运行脚本
         env:
@@ -29,4 +29,4 @@ jobs:
           TG: ${{ secrets.TG }}
           Throw: ${{ secrets.Throw }}
         run: |
-          pnpm run start:js
+          pnpm run start:global
