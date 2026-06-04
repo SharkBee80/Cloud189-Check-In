@@ -1,3 +1,6 @@
+> [!CAUTION]
+> 不可用
+
 # Cloud189-Check-In
 
 |  变量名  | 必须 | 描述                                                                            |
