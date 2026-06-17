@@ -1,6 +1,7 @@
 import { ACCOUNTS, TG, Throw } from "./config.ts";
 import { TG_Bot } from "./tg.ts";
 import { Ecloud } from "./ecloud.ts";
+import type { UserSizeInfoResponse } from "cloud189-sdk";
 
 async function sign(acc: string[], index: number): Promise<[string, boolean]> {
   let res = "",
@@ -9,7 +10,7 @@ async function sign(acc: string[], index: number): Promise<[string, boolean]> {
     const [username, password] = acc;
     if (!username || !password) throw new Error("Missing Account Or Password");
     if (!new RegExp(/^(?:(?:\+|00)86)?1\d{10}$/).test(username)) throw new Error("Invalid Account");
-    const ecloud = new Ecloud(username!, password!);
+    const ecloud = new Ecloud(username, password);
     const r1 = await ecloud.userSign();
     const r2 = await ecloud.info();
     const data = {
@@ -118,4 +119,6 @@ async function run() {
   }
 }
 
-run();
+(async () => {
+  await run();
+})();

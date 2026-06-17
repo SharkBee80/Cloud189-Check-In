@@ -2,7 +2,7 @@ import { defineConfig, type Options } from "tsup";
 
 export default defineConfig((options) => {
   const base_options: Options = {
-    entry: ["src/index.ts"],
+    // entry: ["src/index.ts"],
     dts: false,
     clean: true,
     sourcemap: false,
@@ -29,12 +29,14 @@ export default defineConfig((options) => {
     // 1. 全量版本 (Bundle Everything)
     {
       ...base_options,
+      entry: { bundle: "src/index.ts" },
       format: "cjs",
       noExternal: [/.*/],
     },
     // 2. 依赖分离版本 (Exclude Dependencies)
     {
       ...base_options,
+      entry: ["src/index.ts"],
       format: "esm",
     },
   ];

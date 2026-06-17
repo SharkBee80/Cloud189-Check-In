@@ -6,8 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.ts",
+    "main": "node dist/index.js",
     "start:js": "node dist/index.js",
-    "start:cjs": "node dist/index.cjs",
+    "start:bundle": "node dist/bundle.cjs",
     "build": "tsup",
     "build:watch": "tsup --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@types/node": "^25.9.1",
     "tsup": "^8.5.1",
+    "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   }
 }

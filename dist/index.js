@@ -153,4 +153,4 @@ async function C() {
 `)), w))
     throw new Error("Some Error Occured");
 }
-C();
+(async () => await C())();
