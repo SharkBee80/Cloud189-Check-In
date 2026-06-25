@@ -9,6 +9,7 @@
 |    TG    |  ❌  | `TG_BOT_TOKEN;TG_USER_ID`                                                       |
 |  Throw   |  ❌  | 通过github抛出错误， <br> 值:`false` \| \| `(String \| true)` <br> 默认为`true` |
 
+<!-- | MAX_TRY  |  ❌  | 最大尝试次数。<br/>默认为`5`                                                    | -->
 <!-- |    UA    |  ❌  | User-Agent。<br/>默认为`Mozilla/5.0`        |
 |  MODEL   |  ❌  | 设备机型。<br/>默认为`SM-G930K`。           | -->
 

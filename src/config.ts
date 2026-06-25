@@ -12,4 +12,5 @@ export const Throw = (() => {
       return true;
   }
 })();
+export const MAX_TRY = Number(process.env.MAX_TRY) || 5;
 // reserved
